@@ -16,7 +16,7 @@ def create_battle_query(topic="rappers in 2025"):
     Returns:
         str: The formatted query string
     """
-    # Using triple quotes without f-string to avoid escaping curly braces
+    # Using triple quotes with f-string and doubled curly braces to escape them
     query = f"""The topic is: "{topic}" Use the web results as context. Identify 2 characters to simulate interactions. Each character has an HP total ranging from 1- 500. 4 moves with damage ranging from 1-150, and a character summary describing its strengths and weaknesses. Select a background that they would battle in. Format the response in a JSON in the following format: 
     {{
         "Character 1": {{
@@ -114,7 +114,7 @@ def query_chatgpt(prompt):
     
     return response.json()
 
-def save_to_file(data, filename="rapper_battle.json"):
+def save_to_file(data, filename="battle.json"):
     """
     Saves the response to a JSON file
     """
@@ -143,34 +143,34 @@ def save_to_file(data, filename="rapper_battle.json"):
         with open(filename, 'w') as f:
             f.write(content)
 
-def main():
-    """
-    Main function to run the battle simulation query
-    """
-    try:
-        # Get the topic from user input (with a default if none provided)
-        topic = input("Enter a topic for the battle (or press Enter for default 'rappers in 2025'): ").strip()
-        if not topic:
-            topic = "rappers in 2025"
+# def main():
+#     """
+#     Main function to run the battle simulation query
+#     """
+#     try:
+#         # Get the topic from user input (with a default if none provided)
+#         topic = input("Enter a topic for the battle (or press Enter for default 'rappers in 2025'): ").strip()
+#         if not topic:
+#             topic = "rappers in 2025"
         
-        # Create the query with the specified topic
-        query = create_battle_query(topic)
+#         # Create the query with the specified topic
+#         query = create_battle_query(topic)
         
-        # Send the query to ChatGPT
-        print("Sending query to ChatGPT...")
-        response = query_chatgpt(query)
+#         # Send the query to ChatGPT
+#         print("Sending query to ChatGPT...")
+#         response = query_chatgpt(query)
         
-        # Create a filename based on the topic
-        filename = f"{topic.replace(' ', '_').lower()}_battle.json"
+#         # Create a filename based on the topic
+#         filename = f"{topic.replace(' ', '_').lower()}_battle.json"
         
-        # Save the response to a file
-        save_to_file(response, filename)
+#         # Save the response to a file
+#         save_to_file(response, filename)
         
-        # Print confirmation
-        print(f"{topic} battle data generated successfully!")
+#         # Print confirmation
+#         print(f"{topic} battle data generated successfully!")
         
-    except Exception as e:
-        print(f"Error: {e}")
+#     except Exception as e:
+#         print(f"Error: {e}")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
