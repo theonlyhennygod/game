@@ -1,0 +1,60 @@
+{"Character 1": 
+	{
+	"Name": "Donald Trump",
+	"Character_Summary": "President of the United States",
+	"Moves": {
+		"Move_1":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_2":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_3":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_4":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        }
+		}
+	 
+
+},
+"Character 2": 
+	{
+	"Name": "Elon Musk",
+	"Character_Summary": "Owner of Tesla, SpaceX, and Neuralink. Head of the department of government efficiency: DOGE",
+	"Moves": {
+		"Move_1":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_2":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_3":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_4":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        }
+		}
+	 
+
+},
+"Background" : "****"
+}
