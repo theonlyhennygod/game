@@ -1,0 +1,1 @@
+Use the web results as context. Identify 2 characters to simulate interactions. Each character has an HP total ranging from 1- 500. 4 moves with damage ranging from 1-150, and a character summary describing its strengths and weaknesses. Select a background that they would battle in
