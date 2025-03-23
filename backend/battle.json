@@ -1,0 +1,60 @@
+{"Character 1": 
+	{
+	"Name": "****",
+	"Character_Summary": "*Summarize the important points of the character with strengths and weaknesses",
+	"Moves": {
+		"Move_1":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_2":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_3":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_4":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        }
+		}
+	 
+
+},
+"Character 2": 
+	{
+	"Name": "****",
+	"Character_Summary": "*Summarize the important points of the character with strengths and weaknesses",
+	"Moves": {
+		"Move_1":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_2":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_3":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        },
+        "Move_4":{
+            "Move_name": "****",
+            "Description": "****",
+            "Damage": "****"
+        }
+		}
+	 
+
+},
+"Background" : "****"
+}

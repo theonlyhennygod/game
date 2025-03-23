@@ -1,0 +1,2 @@
+Character generation by web context
+Do a websearch and use the top results as context for character generation

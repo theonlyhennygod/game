@@ -1,0 +1,2 @@
+Character generation by web context
+Use the web results as context. Identify 2 characters to simulate interactions. Each character has an HP total ranging from 1- 999. 4 moves with damage ranging from 1-500, and a character summary describing its strengths and weaknesses. Select a background that they would battle in
