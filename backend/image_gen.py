@@ -31,6 +31,25 @@ Instructions: If a public figure, it should look like them."""
     return response.data[0].url
 
 
+def generate_background_image(bg_description):
+    prompt = f"""Create a pixel art sprite of:
+
+  description: {bg_description}
+
+  Style: Low resolution, pixelated, 4-6 colors maximum, bold outlines, no lines on elements (if any), simplified design.
+  Instructions: No characters, no people, no animals, no objects, no text. Just a background with the specified description. Very simple. Not too busy.
+  """
+
+    print(prompt)
+    response = client.images.generate(
+        model="grok-2-image",
+        prompt=prompt,
+        n=1
+    )
+
+    return response.data[0].url
+
+
 def generate_images_from_json(json_file_path):
     with open(json_file_path, 'r') as f:
         data = json.load(f)
@@ -43,7 +62,12 @@ def generate_images_from_json(json_file_path):
                 image_urls[char_key] = image_url
             except Exception as e:
                 print(f"Error generating image for {char_key}: {str(e)}")
-
+        else:
+            try:
+                bg_url = generate_background_image(char_data)
+                image_urls[char_key] = bg_url
+            except Exception as e:
+                print(f"Error generating background image: {str(e)}")
     return image_urls
 
 
@@ -82,15 +106,15 @@ if __name__ == "__main__":
     for char_name, url in character_images.items():
         save_path = f"./images/{char_name}.png"
         output_path = f"./images/{char_name}_no_bg.png"
-        if download_image(url, save_path):
+        if download_image(url, save_path) and char_name != "Background":
             # Process the downloaded image to remove background
             try:
-              input_image = Image.open(save_path)
-              output_image = remove(input_image)
-              output_image.save(output_path)
-              print(f"Background removed and image saved as {output_path}")
+                input_image = Image.open(save_path)
+                output_image = remove(input_image)
+                output_image.save(output_path)
+                print(f"Background removed and image saved as {output_path}")
             except Exception as e:
-              print(f"Error removing background: {e}")
+                print(f"Error removing background: {e}")
         else:
             print("Failed to download image, cannot proceed with background removal")
 
