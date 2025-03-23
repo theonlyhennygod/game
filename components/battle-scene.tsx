@@ -234,13 +234,14 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
       <motion.div
         className="absolute top-[30%] right-[20%]"
         animate={{
-          x: enemyAttacking ? -50 : enemyHit ? [20, -20, 15, -15, 10, -10, 5, -5, 0] : 0,
-          y: enemyHit ? [5, -5, 3, -3, 0] : 0,
+          x: enemyAttacking ? -50 : enemyHit ? 20 : 0,
+          y: enemyHit ? 5 : 0,
         }}
         transition={{
-          duration: enemyAttacking ? 0.3 : enemyHit ? 0.5 : 0.2,
           type: "spring",
           stiffness: 200,
+          damping: enemyHit ? 5 : 15,
+          duration: enemyAttacking ? 0.3 : 0.2
         }}
       >
         <div className="relative">
@@ -259,13 +260,14 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
       <motion.div
         className="absolute bottom-[30%] left-[15%]"
         animate={{
-          x: playerAttacking ? 50 : playerHit ? [20, -20, 15, -15, 10, -10, 5, -5, 0] : 0,
-          y: playerHit ? [5, -5, 3, -3, 0] : 0,
+          x: playerAttacking ? 50 : playerHit ? 20 : 0,
+          y: playerHit ? 5 : 0,
         }}
         transition={{
-          duration: playerAttacking ? 0.3 : playerHit ? 0.5 : 0.2,
           type: "spring",
           stiffness: 200,
+          damping: playerHit ? 5 : 15,
+          duration: playerAttacking ? 0.3 : 0.2
         }}
       >
         <div className="w-32 h-32 bg-gray-400 rounded-md flex items-center justify-center">
