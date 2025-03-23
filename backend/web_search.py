@@ -143,34 +143,34 @@ def save_to_file(data, filename="battle.json"):
         with open(filename, 'w') as f:
             f.write(content)
 
-# def main():
-#     """
-#     Main function to run the battle simulation query
-#     """
-#     try:
-#         # Get the topic from user input (with a default if none provided)
-#         topic = input("Enter a topic for the battle (or press Enter for default 'rappers in 2025'): ").strip()
-#         if not topic:
-#             topic = "rappers in 2025"
+def main():
+    """
+    Main function to run the battle simulation query
+    """
+    try:
+        # Get the topic from user input (with a default if none provided)
+        topic = input("Enter a topic for the battle (or press Enter for default 'rappers in 2025'): ").strip()
+        if not topic:
+            topic = "rappers in 2025"
         
-#         # Create the query with the specified topic
-#         query = create_battle_query(topic)
+        # Create the query with the specified topic
+        query = create_battle_query(topic)
         
-#         # Send the query to ChatGPT
-#         print("Sending query to ChatGPT...")
-#         response = query_chatgpt(query)
+        # Send the query to ChatGPT
+        print("Sending query to ChatGPT...")
+        response = query_chatgpt(query)
         
-#         # Create a filename based on the topic
-#         filename = f"{topic.replace(' ', '_').lower()}_battle.json"
+        # Create a filename based on the topic
+        filename = f"{topic.replace(' ', '_').lower()}_battle.json"
         
-#         # Save the response to a file
-#         save_to_file(response, filename)
+        # Save the response to a file
+        save_to_file(response, filename)
         
-#         # Print confirmation
-#         print(f"{topic} battle data generated successfully!")
+        # Print confirmation
+        print(f"{topic} battle data generated successfully!")
         
-#     except Exception as e:
-#         print(f"Error: {e}")
+    except Exception as e:
+        print(f"Error: {e}")
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 
 # Import functions from gamify.py
 try:
-    from gamify import create_battle_query, query_chatgpt, save_to_file
+    from web_search import create_battle_query, query_chatgpt, save_to_file
 except ImportError:
-    print("Error: Could not import from gamify.py. Make sure the file is in the same directory.")
+    print("Error: Could not import from web_search.py. Make sure the file is in the same directory.")
     sys.exit(1)
 
 def parse_arguments():
