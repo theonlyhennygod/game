@@ -18,13 +18,15 @@ except ImportError:
 
 def parse_arguments():
     """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description="Generate a battle simulation for a given topic")
+    parser = argparse.ArgumentParser(description="Generate a battle simulation and character images")
     parser.add_argument("--topic", type=str, default="rappers in 2025",
                         help="Topic for the battle (default: 'rappers in 2025')")
     parser.add_argument("--output", type=str, default=None,
                         help="Output filename (default: [topic]_battle.json)")
     parser.add_argument("--model", type=str, default="gpt-4-turbo",
                         help="OpenAI model to use (default: gpt-4-turbo)")
+    parser.add_argument("--skip-images", action="store_true",
+                        help="Skip image generation step")
     return parser.parse_args()
 
 def main():
@@ -37,6 +39,11 @@ def main():
         print("Error: No OpenAI API key found. Set the OPENAI_API_KEY environment variable.")
         print("Create a .env file with: OPENAI_API_KEY=your_api_key_here")
         return 1
+    
+    # Check for X.AI API key if we're generating images
+    if not os.getenv('XAI_API_KEY'):
+        print("Warning: No X.AI API key found. Image generation will not work.")
+        print("Add XAI_API_KEY=your_api_key_here to your .env file for image generation.")
     
     # Parse command line arguments
     args = parse_arguments()
@@ -68,6 +75,29 @@ def main():
         save_to_file(response, filename)
         
         print(f"Battle generation complete! Data saved to {filename}")
+        
+        # Generate character images if not skipped
+        if not args.skip_images and os.getenv('XAI_API_KEY'):
+            print("\nGenerating character images...")
+            try:
+                # Create images directory if it doesn't exist
+                os.makedirs("./images", exist_ok=True)
+                
+                # Generate images for characters
+                character_images = generate_images_from_json(filename)
+                
+                print("\nCharacter images generated successfully!")
+                for char_name, url in character_images.items():
+                    print(f"{char_name}: {url}")
+                    
+            except Exception as e:
+                print(f"Error during image generation: {e}")
+                print("Battle data was saved successfully, but image generation failed.")
+        elif args.skip_images:
+            print("Image generation skipped as requested.")
+        else:
+            print("Image generation skipped due to missing X.AI API key.")
+            
         return 0
         
     except Exception as e:
