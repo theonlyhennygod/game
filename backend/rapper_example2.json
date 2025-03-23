@@ -1,0 +1,56 @@
+{
+    "Character 1": {
+      "Name": "Doechii",
+      "Character_Summary": "Doechii is a dynamic rapper known for her versatile flow and energetic performances. She gained significant recognition in 2025, winning Best Rap Album at the Grammy Awards and receiving the Billboard Woman of the Year award. Her strengths include her innovative style and stage presence, while her rapid rise in fame may present challenges in maintaining her trajectory.",
+      "Moves": {
+        "Move_1": {
+          "Move_name": "Blazing Bars",
+          "Description": "Delivers a rapid-fire verse that overwhelms the opponent.",
+          "Damage": 120
+        },
+        "Move_2": {
+          "Move_name": "Rhythmic Pulse",
+          "Description": "Uses infectious beats to destabilize the opponent's rhythm.",
+          "Damage": 90
+        },
+        "Move_3": {
+          "Move_name": "Lyrical Whiplash",
+          "Description": "Unleashes sharp lyrics that catch the opponent off-guard.",
+          "Damage": 100
+        },
+        "Move_4": {
+          "Move_name": "Echoing Hooks",
+          "Description": "Employs catchy hooks that distract and confuse the opponent.",
+          "Damage": 80
+        }
+      }
+    },
+    "Character 2": {
+      "Name": "Playboi Carti",
+      "Character_Summary": "Playboi Carti is an influential rapper known for his experimental sound and energetic performances. Approaching 30, he continues to innovate within the hip-hop genre, blending mainstream appeal with avant-garde elements. His strengths lie in his unique vocal style and production choices, while his experimental approach may not resonate with all audiences.",
+      "Moves": {
+        "Move_1": {
+          "Move_name": "Sonic Boom",
+          "Description": "Releases a wave of sound that disrupts the opponent's focus.",
+          "Damage": 110
+        },
+        "Move_2": {
+          "Move_name": "Bass Drop",
+          "Description": "Drops heavy basslines that shake the opponent's defenses.",
+          "Damage": 130
+        },
+        "Move_3": {
+          "Move_name": "Hypnotic Flow",
+          "Description": "Utilizes mesmerizing rhythms to lull the opponent into a vulnerable state.",
+          "Damage": 95
+        },
+        "Move_4": {
+          "Move_name": "Ad-lib Assault",
+          "Description": "Bombards the opponent with spontaneous ad-libs, causing confusion.",
+          "Damage": 85
+        }
+      }
+    },
+    "Background": "The battleground is set at the Dreamville Festival 2025 stage, a vibrant outdoor venue in Raleigh, NC, where both artists are scheduled to perform."
+  }
+  
