@@ -1,0 +1,56 @@
+{
+    "Character 1": {
+      "Name": "Kendrick 'Notorious' Lamar",
+      "Character_Summary": "Kendrick 'Notorious' Lamar is a lyrical genius known for his sharp wordplay and profound storytelling. His recent diss track 'Not Like Us' has not only topped charts but also sparked significant controversy, showcasing his fearless approach. Strengths include exceptional lyricism and the ability to address social issues effectively. However, his confrontational style has led to legal challenges, reflecting a potential weakness in navigating industry relationships.",
+      "Moves": {
+        "Move_1": {
+          "Move_name": "Lyrical Barrage",
+          "Description": "Unleashes a rapid-fire sequence of intricate rhymes, overwhelming opponents with verbal dexterity.",
+          "Damage": 450
+        },
+        "Move_2": {
+          "Move_name": "Conscious Strike",
+          "Description": "Delivers a thought-provoking verse that exposes the opponent's flaws and societal issues.",
+          "Damage": 380
+        },
+        "Move_3": {
+          "Move_name": "Diss Track Drop",
+          "Description": "Releases a scathing diss track mid-battle, demoralizing the opponent.",
+          "Damage": 500
+        },
+        "Move_4": {
+          "Move_name": "Grammy Glow",
+          "Description": "Harnesses the power of multiple Grammy wins to boost confidence and intimidate the opponent.",
+          "Damage": 420
+        }
+      }
+    },
+    "Character 2": {
+      "Name": "Drake 'Champagne Papi' Graham",
+      "Character_Summary": "Drake 'Champagne Papi' Graham is a versatile artist blending rap and R&B, known for his catchy hooks and emotional delivery. Despite his commercial success, he has faced challenges, including a recent high-profile feud with Kendrick Lamar and legal disputes. His strengths lie in his adaptability and mass appeal, while his vulnerabilities include public perception and personal controversies.",
+      "Moves": {
+        "Move_1": {
+          "Move_name": "Melodic Hook",
+          "Description": "Captivates the audience with a catchy chorus, boosting morale and distracting the opponent.",
+          "Damage": 400
+        },
+        "Move_2": {
+          "Move_name": "Emotional Verse",
+          "Description": "Delivers heartfelt lyrics that resonate with the crowd, gaining their support.",
+          "Damage": 350
+        },
+        "Move_3": {
+          "Move_name": "Legal Counter",
+          "Description": "Utilizes legal maneuvers to counter the opponent's attacks, reflecting his real-life lawsuit strategies.",
+          "Damage": 300
+        },
+        "Move_4": {
+          "Move_name": "Chart Topper",
+          "Description": "Releases a hit single during the battle, overshadowing the opponent's presence.",
+          "Damage": 450
+        }
+      }
+    },
+    "Background": "The battleground is set at the Dreamville Festival 2025 stage in Raleigh, NC, amidst a massive crowd gathered to witness the ultimate rap showdown."
+  }
+  
