@@ -1,0 +1,55 @@
+{
+    "Character_1": {
+        "Name": "Pikachu",
+        "Character_Summary": "Pikachu is an Electric-type Pok\u00e9mon known for its agility and electric attacks. It excels in speed and special attack, but has weaknesses against Ground-type moves.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Thunderbolt",
+                "Description": "A strong electric blast crashes down on the target.",
+                "Damage": "90"
+            },
+            "Move_2": {
+                "Move_name": "Quick Attack",
+                "Description": "The user lunges at the target at a speed that makes it almost invisible.",
+                "Damage": "40"
+            },
+            "Move_3": {
+                "Move_name": "Iron Tail",
+                "Description": "The target is slammed with a steel-hard tail.",
+                "Damage": "100"
+            },
+            "Move_4": {
+                "Move_name": "Electro Ball",
+                "Description": "The user hurls an electric orb at the target, the faster the user is compared to the target, the greater the move's power.",
+                "Damage": "Variable"
+            }
+        }
+    },
+    "Character_2": {
+        "Name": "Charizard",
+        "Character_Summary": "Charizard is a Fire/Flying-type Pok\u00e9mon known for its powerful fire-based attacks and ability to fly. It has high special attack and speed, but is vulnerable to Rock, Water, and Electric-type moves.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Flamethrower",
+                "Description": "The target is scorched with an intense blast of fire.",
+                "Damage": "90"
+            },
+            "Move_2": {
+                "Move_name": "Dragon Claw",
+                "Description": "The user slashes the target with huge sharp claws.",
+                "Damage": "80"
+            },
+            "Move_3": {
+                "Move_name": "Air Slash",
+                "Description": "The user attacks with a blade of air that slices even the sky.",
+                "Damage": "75"
+            },
+            "Move_4": {
+                "Move_name": "Heat Wave",
+                "Description": "The user attacks by exhaling hot breath on the opposing Pok\u00e9mon.",
+                "Damage": "95"
+            }
+        }
+    },
+    "Background": "Viridian Forest"
+}
