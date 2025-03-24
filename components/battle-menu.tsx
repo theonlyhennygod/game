@@ -34,8 +34,8 @@ export default function BattleMenu({ moves, onSelectMove, disabled }: BattleMenu
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <span className="font-bold">{move.name}</span>
-          <span className="text-xs">PP: 10/10</span>
+          <span className="font-bold text-black">{move.name}</span>
+          <span className="text-xs text-black">PP: 10/10</span>
         </motion.button>
       ))}
     </div>

@@ -1,0 +1,54 @@
+{
+    "Character_1": {
+        "Name": "Psyduck",
+        "Character_Summary": "Psyduck is a Water-type Pok\u00e9mon known for its constant headache, which intensifies its psychic powers. It often appears confused but can unleash powerful psychic attacks when its headache becomes severe.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Water Gun",
+                "Description": "Shoots a jet of water at the opponent.",
+                "Damage": "40"
+            },
+            "Move_2": {
+                "Move_name": "Confusion",
+                "Description": "A psychic attack that may confuse the opponent.",
+                "Damage": "50"
+            },
+            "Move_3": {
+                "Move_name": "Zen Headbutt",
+                "Description": "Delivers a strong psychic headbutt.",
+                "Damage": "80"
+            },
+            "Move_4": {
+                "Move_name": "Psychic",
+                "Description": "Unleashes a powerful psychic wave.",
+                "Damage": "90"
+            }
+        }
+    },
+    "Character_2": {
+        "Name": "Oshawott",
+        "Character_Summary": "Oshawott is a Water-type Pok\u00e9mon that is confident and brave. It uses the scalchop on its belly as a weapon and shield. However, its overconfidence can sometimes lead it into trouble.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Razor Shell",
+                "Description": "Slashes the opponent with a sharp shell.",
+                "Damage": "75"
+            },
+            "Move_2": {
+                "Move_name": "Water Pulse",
+                "Description": "Attacks with a pulsing blast of water.",
+                "Damage": "60"
+            },
+            "Move_3": {
+                "Move_name": "Aqua Jet",
+                "Description": "Strikes the opponent with a quick water-infused charge.",
+                "Damage": "40"
+            },
+            "Move_4": {
+                "Move_name": "Hydro Pump",
+                "Description": "Blasts water at high pressure.",
+                "Damage": "110"
+            }
+        }
+    }
+}

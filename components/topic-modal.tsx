@@ -28,6 +28,7 @@ export default function TopicModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+<<<<<<< HEAD
     if (!topic.trim()) return
 
     setIsLoading(true)
@@ -81,6 +82,24 @@ export default function TopicModal({
       setError(error.message || "Failed to generate battle arena")
     } finally {
       setIsLoading(false)
+=======
+    if (topic.trim()) {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/api/generate_image?topic=${encodeURIComponent(topic)}`);
+        const result = await response.json();
+  
+        if (response.ok) {
+          onSelectTopic(result.result);  // Pass result to parent or handle locally
+        } else {
+          onSelectTopic(`Error: ${result.error}`);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        onSelectTopic('Error fetching data.');
+      } finally {
+        setTopic("");         // Clear input field
+      }
+>>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
     }
   }
 
@@ -167,7 +186,11 @@ export default function TopicModal({
               id="topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
+<<<<<<< HEAD
               className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black bg-white"
+=======
+              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black"
+>>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
               rows={3}
               placeholder="Enter a topic for the battle..."
               disabled={isLoading}

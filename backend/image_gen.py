@@ -5,6 +5,9 @@ import requests
 import os
 import json
 from openai import OpenAI
+from dotenv import load_dotenv
+# Load environment variables
+load_dotenv()
 
 XAI_API_KEY = os.getenv("XAI_API_KEY")
 client = OpenAI(base_url="https://api.x.ai/v1", api_key=XAI_API_KEY)
@@ -98,14 +101,12 @@ def download_image(url, save_path):
 # input_path = "input.jpg"
 # output_path = "output.png"
 
-
-if __name__ == "__main__":
-    json_file = "backend/rapper_example.json"
+def main(json_file="./battle.json"):
     character_images = generate_images_from_json(json_file)
 
     for char_name, url in character_images.items():
-        save_path = f"./images/{char_name}.png"
-        output_path = f"./images/{char_name}_no_bg.png"
+        save_path = f"./public/{char_name}.png"
+        output_path = f"./public/{char_name}_no_bg.png"
         if download_image(url, save_path) and char_name != "Background":
             # Process the downloaded image to remove background
             try:
@@ -120,3 +121,8 @@ if __name__ == "__main__":
 
     for char_name, url in character_images.items():
         print(f"{char_name}: {url}")
+
+
+if __name__ == "__main__":
+    json_file = "backend/rapper_example.json"
+    main(json_file)

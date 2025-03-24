@@ -260,6 +260,7 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic, b
   }, [backgroundUrl]);
 
   return (
+<<<<<<< HEAD
     <div 
       className="relative w-full h-screen border-4 border-black overflow-hidden"
       style={{ 
@@ -280,6 +281,26 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic, b
         </div>
       )}
       
+=======
+    <div className="relative w-full h-screen bg-gradient-to-b from-green-300 to-green-500 border-4 border-black overflow-hidden">
+      {/* Music Player */}
+      <div className="absolute top-2 right-2 z-10">
+        <MusicPlayer />
+      </div>
+
+      {/* Game Mode and Difficulty Indicator */}
+      <div className="absolute top-2 left-2 bg-white px-3 py-1 rounded-full border-2 border-black">
+        <span className="pixel-font text-sm font-bold text-black">
+          1 vs AI - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+        </span>
+      </div>
+
+      {/* Topic Indicator */}
+      <div className="absolute top-12 left-2 bg-white px-3 py-1 rounded-full border-2 border-black max-w-[200px] truncate">
+        <span className="pixel-font text-sm font-bold text-black">Topic: {topic}</span>
+      </div>
+
+>>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
       {/* Player health bar - top left */}
       <div className="absolute top-[10%] left-[5%] w-[40%]">
         <div className="bg-black bg-opacity-80 rounded-lg p-2">
@@ -348,13 +369,17 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic, b
         }}
       >
         <div className="relative">
-          <div className="w-32 h-32 bg-green-700 rounded-full absolute -z-10"></div>
-          <div className="w-40 h-40 flex items-center justify-center">
+          <div className="w-64 h-64 bg-green-700 rounded-full absolute -z-10"></div>
+          <div className="w-80 h-80 flex items-center justify-center">
             <img
               src={generatedEnemyImage || enemyMonster.sprite || "/placeholder.svg"}
               alt={enemyMonster.name}
+<<<<<<< HEAD
               className="w-32 h-32 object-contain pixelated"
               style={{ width: 'auto', height: 'auto' }}
+=======
+              className="w-64 h-64 object-contain pixelated"
+>>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
             />
           </div>
         </div>
@@ -374,6 +399,7 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic, b
           duration: playerAttacking ? 0.3 : 0.2
         }}
       >
+<<<<<<< HEAD
         <div className="w-32 h-32 bg-gray-400 rounded-md flex items-center justify-center">
           {selectedImages.player ? (
             <img
@@ -389,6 +415,17 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic, b
               className="w-24 h-24 object-cover rounded-full"
             />
           )}
+=======
+        <div className="relative">
+          <div className="w-64 h-64 bg-green-700 rounded-full absolute -z-10"></div>
+          <div className="w-80 h-80 flex items-center justify-center">
+            <img
+              src={playerMonster.sprite || "/placeholder.svg"}
+              alt={playerMonster.name}
+              className="w-64 h-64 object-contain pixelated"
+            />
+          </div>
+>>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
         </div>
       </motion.div>
 

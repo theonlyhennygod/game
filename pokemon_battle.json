@@ -1,0 +1,54 @@
+{
+    "Character_1": {
+        "Name": "Pikachu",
+        "Character_Summary": "Pikachu is an Electric-type Pok\u00e9mon known for its agility and electric attacks. It is weak against Ground-type moves.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Thunderbolt",
+                "Description": "A strong electric blast crashes down on the target.",
+                "Damage": "90"
+            },
+            "Move_2": {
+                "Move_name": "Quick Attack",
+                "Description": "An almost invisibly fast attack.",
+                "Damage": "40"
+            },
+            "Move_3": {
+                "Move_name": "Iron Tail",
+                "Description": "The target is slammed with a steel-hard tail.",
+                "Damage": "100"
+            },
+            "Move_4": {
+                "Move_name": "Electro Ball",
+                "Description": "The faster the user is than the target, the greater the damage.",
+                "Damage": "60"
+            }
+        }
+    },
+    "Character_2": {
+        "Name": "Charizard",
+        "Character_Summary": "Charizard is a Fire/Flying-type Pok\u00e9mon with powerful fire attacks and flight ability. It is weak against Water and Electric-type moves.",
+        "Moves": {
+            "Move_1": {
+                "Move_name": "Flamethrower",
+                "Description": "The target is scorched with an intense blast of fire.",
+                "Damage": "90"
+            },
+            "Move_2": {
+                "Move_name": "Fly",
+                "Description": "The user soars and then strikes its target on the next turn.",
+                "Damage": "90"
+            },
+            "Move_3": {
+                "Move_name": "Dragon Claw",
+                "Description": "The user slashes the target with huge sharp claws.",
+                "Damage": "80"
+            },
+            "Move_4": {
+                "Move_name": "Fire Spin",
+                "Description": "The target becomes trapped within a fierce vortex of fire.",
+                "Damage": "35"
+            }
+        }
+    }
+}

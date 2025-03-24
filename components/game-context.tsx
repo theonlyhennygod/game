@@ -35,7 +35,7 @@ interface GameContextType {
 const defaultPlayerMonster: Monster = {
   id: 1,
   name: "Psyduck",
-  sprite: "/placeholder.svg?height=100&width=100",
+  sprite: "/Character_1_no_bg.png?height=150&width=150",
   level: 5,
   moves: [
     { name: "Scratch", type: "Normal", power: 10 },
@@ -48,7 +48,7 @@ const defaultPlayerMonster: Monster = {
 const defaultEnemyMonster: Monster = {
   id: 2,
   name: "Oshawott",
-  sprite: "/placeholder.svg?height=100&width=100",
+  sprite: "/Character_2_no_bg.png?height=150&width=150",
   level: 7,
   moves: [
     { name: "Tackle", type: "Normal", power: 10 },
