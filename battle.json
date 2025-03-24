@@ -1,53 +1,53 @@
 {
     "Character_1": {
-        "Name": "Pikachu",
-        "Character_Summary": "Pikachu is an Electric-type Pok\u00e9mon known for its speed and electric attacks. It is agile and can deliver powerful electric shocks, but it is vulnerable to Ground-type moves.",
+        "Name": "Psyduck",
+        "Character_Summary": "Psyduck is a Water-type Pok\u00e9mon known for its constant headache, which intensifies its psychic powers. It often appears confused but can unleash powerful psychic attacks when its headache becomes severe.",
         "Moves": {
             "Move_1": {
-                "Move_name": "Thunderbolt",
-                "Description": "A strong electric blast crashes down on the target.",
-                "Damage": "90"
-            },
-            "Move_2": {
-                "Move_name": "Quick Attack",
-                "Description": "The user lunges at the target at a speed that makes it almost invisible.",
+                "Move_name": "Water Gun",
+                "Description": "Shoots a jet of water at the opponent.",
                 "Damage": "40"
             },
+            "Move_2": {
+                "Move_name": "Confusion",
+                "Description": "A psychic attack that may confuse the opponent.",
+                "Damage": "50"
+            },
             "Move_3": {
-                "Move_name": "Iron Tail",
-                "Description": "The user attacks with a hard tail.",
-                "Damage": "100"
+                "Move_name": "Zen Headbutt",
+                "Description": "Delivers a strong psychic headbutt.",
+                "Damage": "80"
             },
             "Move_4": {
-                "Move_name": "Electro Ball",
-                "Description": "The user hurls an electric orb at the target.",
-                "Damage": "80"
+                "Move_name": "Psychic",
+                "Description": "Unleashes a powerful psychic wave.",
+                "Damage": "90"
             }
         }
     },
     "Character_2": {
-        "Name": "Charizard",
-        "Character_Summary": "Charizard is a Fire/Flying-type Pok\u00e9mon known for its fiery breath and ability to fly. It can unleash powerful fire attacks but is weak to Water and Rock-type moves.",
+        "Name": "Oshawott",
+        "Character_Summary": "Oshawott is a Water-type Pok\u00e9mon that is confident and brave. It uses the scalchop on its belly as a weapon and shield. However, its overconfidence can sometimes lead it into trouble.",
         "Moves": {
             "Move_1": {
-                "Move_name": "Flamethrower",
-                "Description": "The target is scorched with an intense blast of fire.",
-                "Damage": "90"
-            },
-            "Move_2": {
-                "Move_name": "Dragon Claw",
-                "Description": "The user slashes the target with huge sharp claws.",
-                "Damage": "80"
-            },
-            "Move_3": {
-                "Move_name": "Air Slash",
-                "Description": "The user attacks with a blade of air.",
+                "Move_name": "Razor Shell",
+                "Description": "Slashes the opponent with a sharp shell.",
                 "Damage": "75"
             },
+            "Move_2": {
+                "Move_name": "Water Pulse",
+                "Description": "Attacks with a pulsing blast of water.",
+                "Damage": "60"
+            },
+            "Move_3": {
+                "Move_name": "Aqua Jet",
+                "Description": "Strikes the opponent with a quick water-infused charge.",
+                "Damage": "40"
+            },
             "Move_4": {
-                "Move_name": "Fire Spin",
-                "Description": "The target becomes trapped within a fierce vortex of fire.",
-                "Damage": "35"
+                "Move_name": "Hydro Pump",
+                "Description": "Blasts water at high pressure.",
+                "Damage": "110"
             }
         }
     }
