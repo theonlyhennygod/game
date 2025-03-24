@@ -4,17 +4,17 @@ import { useState, useEffect } from "react"
 import { useGameContext } from "./game-context"
 import BattleMenu from "./battle-menu"
 import { motion, AnimatePresence } from "framer-motion"
-import MusicPlayer from "./music-player"
 
 interface BattleSceneProps {
   onGameOver: () => void
   gameMode: "ai"
   difficulty: "easy" | "medium" | "hard"
   topic: string
+  backgroundUrl: string
 }
 
-export default function BattleScene({ onGameOver, gameMode, difficulty, topic }: BattleSceneProps) {
-  const { playerMonster, enemyMonster, resetGame } = useGameContext()
+export default function BattleScene({ onGameOver, gameMode, difficulty, topic, backgroundUrl }: BattleSceneProps) {
+  const { playerMonster, enemyMonster, resetGame, generateMonsterImage } = useGameContext()
   const [playerHealth, setPlayerHealth] = useState(100)
   const [enemyHealth, setEnemyHealth] = useState(100)
   const [battleText, setBattleText] = useState(`Battle topic: ${topic}. What will you do?`)
@@ -32,6 +32,16 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
     y: 0,
     type: "normal",
   })
+
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false)
+  const [prompt, setPrompt] = useState<string>("")
+  const [generatedImage, setGeneratedImage] = useState<string>("")
+  const [generatedEnemyImage, setGeneratedEnemyImage] = useState<string>("")
+  const [generatedBackground, setGeneratedBackground] = useState("")
+  const [selectedImages, setSelectedImages] = useState<{player?: string, enemy?: string}>({})
+
+  // Background loading state
+  const [isBackgroundLoading, setIsBackgroundLoading] = useState(true);
 
   // Reset battle when topic changes
   useEffect(() => {
@@ -158,25 +168,118 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
     }, 500)
   }
 
+  const handleGenerateNewMonsterImage = async () => {
+    if (!prompt.trim()) {
+      setBattleText("Please enter an image description first!");
+      return;
+    }
+
+    try {
+      setIsGeneratingImage(true);
+      
+      // Generate player image
+      const playerResponse = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          prompt: `Pixel art of ${prompt} as a friendly monster, vibrant colors, cartoon style`,
+          count: 1
+        }),
+      });
+
+      // Generate enemy image
+      const enemyResponse = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          prompt: `Pixel art of ${prompt} as an evil monster, dark colors, cartoon style`,
+          count: 1
+        }),
+      });
+
+      // Generate background
+      const bgResponse = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          prompt: `Pixel art battle arena for ${prompt}, isometric view, vibrant colors`,
+          count: 1
+        }),
+      });
+
+      const [playerData, enemyData, bgData] = await Promise.all([
+        playerResponse.json(),
+        enemyResponse.json(),
+        bgResponse.json()
+      ]);
+
+      // Handle responses
+      const imageUrls = [
+        playerData.imageUrls?.[0],
+        enemyData.imageUrls?.[0],
+        bgData.imageUrls?.[0]
+      ];
+
+      if (imageUrls.every(url => !!url)) {
+        setGeneratedImage(imageUrls[0]);
+        setGeneratedEnemyImage(imageUrls[1]);
+        setGeneratedBackground(imageUrls[2]);
+        setBattleText("Generated all battle assets!");
+      } else {
+        throw new Error("Failed to generate some images");
+      }
+      
+    } catch (error) {
+      console.error('Generation failed:', error);
+      setBattleText("Failed to generate assets. Please try again.");
+    } finally {
+      setIsGeneratingImage(false);
+    }
+  };
+
+  const handleSelectPlayerImage = (url: string) => {
+    setSelectedImages(prev => ({...prev, player: url}));
+    // Update player monster sprite
+  };
+
+  const handleSelectEnemyImage = (url: string) => {
+    setSelectedImages(prev => ({...prev, enemy: url}));
+    // Update enemy monster sprite
+  };
+
+  // Background image loading handler
+  useEffect(() => {
+    if (backgroundUrl) {
+      setIsBackgroundLoading(true);
+      const img = new Image();
+      img.src = backgroundUrl;
+      img.onerror = () => {
+        setGeneratedBackground('/fallback-bg.jpg'); // Add fallback image
+      };
+    }
+  }, [backgroundUrl]);
+
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-green-300 to-green-500 border-4 border-black overflow-hidden">
-      {/* Music Player */}
-      <div className="absolute top-2 right-2 z-10">
-        <MusicPlayer />
-      </div>
-
-      {/* Game Mode and Difficulty Indicator */}
-      <div className="absolute top-2 left-2 bg-white px-3 py-1 rounded-full border-2 border-black">
-        <span className="pixel-font text-sm font-bold">
-          1 vs AI - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-        </span>
-      </div>
-
-      {/* Topic Indicator */}
-      <div className="absolute top-12 left-2 bg-white px-3 py-1 rounded-full border-2 border-black max-w-[200px] truncate">
-        <span className="pixel-font text-sm font-bold">Topic: {topic}</span>
-      </div>
-
+    <div 
+      className="relative w-full h-screen border-4 border-black overflow-hidden"
+      style={{ 
+        backgroundImage: backgroundUrl ? `url(${backgroundUrl})` : undefined,
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {!backgroundUrl && (
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600" />
+      )}
+      {isBackgroundLoading && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="pixel-font text-white text-xl animate-pulse">
+            Loading battle arena...
+          </div>
+        </div>
+      )}
+      
       {/* Player health bar - top left */}
       <div className="absolute top-[10%] left-[5%] w-[40%]">
         <div className="bg-black bg-opacity-80 rounded-lg p-2">
@@ -248,9 +351,10 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
           <div className="w-32 h-32 bg-green-700 rounded-full absolute -z-10"></div>
           <div className="w-40 h-40 flex items-center justify-center">
             <img
-              src={enemyMonster.sprite || "/placeholder.svg"}
+              src={generatedEnemyImage || enemyMonster.sprite || "/placeholder.svg"}
               alt={enemyMonster.name}
               className="w-32 h-32 object-contain pixelated"
+              style={{ width: 'auto', height: 'auto' }}
             />
           </div>
         </div>
@@ -271,10 +375,20 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
         }}
       >
         <div className="w-32 h-32 bg-gray-400 rounded-md flex items-center justify-center">
-          {/* Back view of player monster */}
-          <div className="w-24 h-24 bg-blue-400 rounded-full flex items-center justify-center">
-            <span className="text-white pixel-font">{playerMonster.name.charAt(0)}</span>
-          </div>
+          {selectedImages.player ? (
+            <img
+              src={selectedImages.player}
+              alt={playerMonster.name}
+              className="w-24 h-24 object-contain pixelated"
+              style={{ width: 'auto', height: 'auto' }}
+            />
+          ) : (
+            <img
+              src="/psyduck.jpg"
+              alt="Psyduck"
+              className="w-24 h-24 object-cover rounded-full"
+            />
+          )}
         </div>
       </motion.div>
 
@@ -319,6 +433,25 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
           )}
         </div>
       </div>
+
+      {/* Image Generation Controls */}
+      <div className="absolute top-2 right-20 z-10 flex items-center gap-2">
+        <input
+          type="text"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Enter image prompt..."
+          className="px-3 py-1 rounded-full border-2 border-black pixel-font text-sm w-64"
+          disabled={isGeneratingImage}
+        />
+        <button
+          onClick={handleGenerateNewMonsterImage}
+          disabled={isGeneratingImage}
+          className="bg-white px-3 py-1 rounded-full border-2 border-black pixel-font text-sm whitespace-nowrap"
+        >
+          {isGeneratingImage ? 'Generating...' : 'Generate Image'}
+        </button>
+      </div>
     </div>
   )
 }
@@ -352,7 +485,7 @@ function getAttackEffectColor(type: string): string {
 function getAttackEffectIcon(type: string): string {
   const typeIcons: Record<string, string> = {
     normal: "●",
-    fire: "🔥",
+    fire: "��",
     water: "💧",
     electric: "⚡",
     grass: "🌿",

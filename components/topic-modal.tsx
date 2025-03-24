@@ -8,7 +8,7 @@ import { X, Globe } from "lucide-react"
 interface TopicModalProps {
   isOpen: boolean
   onClose: () => void
-  onSelectTopic: (topic: string) => void
+  onSelectTopic: (topic: string, backgroundUrl?: string) => void
   initialPrompt?: string
 }
 
@@ -21,14 +21,66 @@ export default function TopicModal({
   const [topic, setTopic] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [description, setDescription] = useState("")
+  const [isGeneratingDesc, setIsGeneratingDesc] = useState(false)
 
   if (!isOpen) return null
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (topic.trim()) {
-      onSelectTopic(topic)
+    if (!topic.trim()) return
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const bgResponse = await fetch('/api/openai', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          prompt: `Isometric pixel art battle arena for "${topic}", vibrant colors, 16-bit RPG style`,
+          count: 1
+        }),
+      })
+
+      // Handle non-JSON responses
+      const contentType = bgResponse.headers.get('content-type')
+      if (!contentType?.includes('application/json')) {
+        throw new Error(`Unexpected response format: ${contentType}`)
+      }
+
+      const bgData = await bgResponse.json()
+      
+      if (!bgResponse.ok) {
+        throw new Error(bgData.error || 'Failed to generate arena')
+      }
+
+      if (!bgData.imageUrls?.[0]?.startsWith('https://')) {
+        throw new Error('Invalid image URL format received from API')
+      }
+
+      console.log('Generated background URL:', bgData.imageUrls[0]);
+
+      console.log('Generation metadata:', {
+        prompt: `Isometric pixel art battle arena for "${topic}"`,
+        responseStatus: bgResponse.status,
+        imageUrl: bgData.imageUrls?.[0],
+        error: bgData.error
+      });
+
+      onSelectTopic(topic, bgData.imageUrls[0])
       setTopic("")
+      onClose()
+
+    } catch (error: any) {
+      console.error('Arena Generation Failed:', {
+        error: error.message,
+        stack: error.stack,
+        cause: error.cause
+      })
+      setError(error.message || "Failed to generate battle arena")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -37,34 +89,62 @@ export default function TopicModal({
     setError(null)
 
     try {
-      // Simulate AI agent generating a topic based on web content
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const url = topic.trim()
+      
+      const response = await fetch('/api/scrape', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      })
 
-      const webTopics = [
-        "Climate Change Debate",
-        "Space Exploration vs Ocean Discovery",
-        "Renewable Energy Revolution",
-        "Artificial Intelligence Ethics",
-        "Virtual Reality vs Augmented Reality",
-        "Cryptocurrency Future",
-        "Remote Work vs Office Culture",
-        "Social Media Impact",
-        "Quantum Computing Applications",
-        "Genetic Engineering Possibilities",
-      ]
+      if (!response.ok) {
+        throw new Error('Failed to analyze webpage')
+      }
 
-      const generatedTopic = webTopics[Math.floor(Math.random() * webTopics.length)]
-      setTopic(generatedTopic)
+      const data = await response.json()
+      
+      // Directly set the scraped topic into the textarea
+      setTopic(data.topic || "Could not generate topic")
 
-      // In a real implementation, you would call an AI agent API here
-      // const response = await fetch('/api/generate-topic-from-web')
-      // const data = await response.json()
-      // setTopic(data.topic)
     } catch (err) {
       setError("Failed to generate topic. Please try again.")
       console.error(err)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleRandomTopic = async () => {
+    const randomTopics = [
+      "Fire vs Water",
+      "Dragons vs Knights",
+      "Space vs Ocean",
+      "Robots vs Dinosaurs",
+      "Magic vs Technology",
+      "Pizza vs Burgers",
+      "Cats vs Dogs",
+      "Summer vs Winter",
+      "Books vs Movies",
+      "Mountains vs Beaches",
+    ]
+    const randomTopic = randomTopics[Math.floor(Math.random() * randomTopics.length)]
+    setTopic(randomTopic)
+    
+    // Generate description
+    setIsGeneratingDesc(true)
+    try {
+      const response = await fetch('/api/generate-description', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ topic: randomTopic })
+      })
+      
+      const data = await response.json()
+      setDescription(data.description || "No description generated")
+    } catch (err) {
+      setDescription("Failed to generate description")
+    } finally {
+      setIsGeneratingDesc(false)
     }
   }
 
@@ -81,19 +161,26 @@ export default function TopicModal({
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="topic" className="block mb-2 pixel-font text-sm">
-              What would you like to battle about?
+              Enter URL or topic:
             </label>
             <textarea
               id="topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none"
+              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black bg-white"
               rows={3}
               placeholder="Enter a topic for the battle..."
+              disabled={isLoading}
             />
           </div>
 
           {error && <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
+
+          {isLoading && (
+            <div className="mb-4 p-2 bg-blue-100 border border-blue-400 text-blue-700 rounded">
+              Generating arena image for: "{topic}"
+            </div>
+          )}
 
           <div className="flex flex-col space-y-3">
             <div className="flex space-x-3">
@@ -102,27 +189,11 @@ export default function TopicModal({
                 className="flex-1 py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700 transition-colors pixel-font"
                 disabled={!topic.trim() || isLoading}
               >
-                Start Battle
+                {isLoading ? 'Generating Arena...' : 'Generate Arena'}
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  // Use a random topic
-                  const randomTopics = [
-                    "Fire vs Water",
-                    "Dragons vs Knights",
-                    "Space vs Ocean",
-                    "Robots vs Dinosaurs",
-                    "Magic vs Technology",
-                    "Pizza vs Burgers",
-                    "Cats vs Dogs",
-                    "Summer vs Winter",
-                    "Books vs Movies",
-                    "Mountains vs Beaches",
-                  ]
-                  const randomTopic = randomTopics[Math.floor(Math.random() * randomTopics.length)]
-                  setTopic(randomTopic)
-                }}
+                onClick={handleRandomTopic}
                 className="flex-1 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition-colors pixel-font"
                 disabled={isLoading}
               >
