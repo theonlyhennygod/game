@@ -98,9 +98,7 @@ def download_image(url, save_path):
 # input_path = "input.jpg"
 # output_path = "output.png"
 
-
-if __name__ == "__main__":
-    json_file = "backend/rapper_example.json"
+def main(json_file="./battle.json"):
     character_images = generate_images_from_json(json_file)
 
     for char_name, url in character_images.items():
@@ -120,3 +118,8 @@ if __name__ == "__main__":
 
     for char_name, url in character_images.items():
         print(f"{char_name}: {url}")
+
+
+if __name__ == "__main__":
+    json_file = "backend/rapper_example.json"
+    main(json_file)
