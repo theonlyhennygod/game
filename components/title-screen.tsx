@@ -30,7 +30,7 @@ export default function TitleScreen({ onStart }: TitleScreenProps) {
       <div className="relative w-full max-w-md aspect-[4/3] mb-8">
         <div className="absolute inset-0 flex items-center justify-center">
           <Image
-            src="/placeholder.svg?height=300&width=400"
+            src="/finalimage.jpg"
             alt="Pokemon-style logo"
             width={400}
             height={300}

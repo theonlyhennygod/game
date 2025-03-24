@@ -28,7 +28,6 @@ export default function TopicModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-<<<<<<< HEAD
     if (!topic.trim()) return
 
     setIsLoading(true)
@@ -44,62 +43,25 @@ export default function TopicModal({
         }),
       })
 
-      // Handle non-JSON responses
-      const contentType = bgResponse.headers.get('content-type')
-      if (!contentType?.includes('application/json')) {
-        throw new Error(`Unexpected response format: ${contentType}`)
-      }
-
       const bgData = await bgResponse.json()
       
       if (!bgResponse.ok) {
         throw new Error(bgData.error || 'Failed to generate arena')
       }
 
-      if (!bgData.imageUrls?.[0]?.startsWith('https://')) {
-        throw new Error('Invalid image URL format received from API')
+      if (!bgData.imageUrls?.[0]) {
+        throw new Error("API returned no image URLs")
       }
-
-      console.log('Generated background URL:', bgData.imageUrls[0]);
-
-      console.log('Generation metadata:', {
-        prompt: `Isometric pixel art battle arena for "${topic}"`,
-        responseStatus: bgResponse.status,
-        imageUrl: bgData.imageUrls?.[0],
-        error: bgData.error
-      });
 
       onSelectTopic(topic, bgData.imageUrls[0])
       setTopic("")
       onClose()
 
     } catch (error: any) {
-      console.error('Arena Generation Failed:', {
-        error: error.message,
-        stack: error.stack,
-        cause: error.cause
-      })
+      console.error('Arena Generation Failed:', error)
       setError(error.message || "Failed to generate battle arena")
     } finally {
       setIsLoading(false)
-=======
-    if (topic.trim()) {
-      try {
-        const response = await fetch(`http://127.0.0.1:5000/api/generate_image?topic=${encodeURIComponent(topic)}`);
-        const result = await response.json();
-  
-        if (response.ok) {
-          onSelectTopic(result.result);  // Pass result to parent or handle locally
-        } else {
-          onSelectTopic(`Error: ${result.error}`);
-        }
-      } catch (error) {
-        console.error('Fetch error:', error);
-        onSelectTopic('Error fetching data.');
-      } finally {
-        setTopic("");         // Clear input field
-      }
->>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
     }
   }
 
@@ -186,11 +148,7 @@ export default function TopicModal({
               id="topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-<<<<<<< HEAD
               className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black bg-white"
-=======
-              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black"
->>>>>>> f8d467b0c65614f6d98d0d214cc657202763db62
               rows={3}
               placeholder="Enter a topic for the battle..."
               disabled={isLoading}
