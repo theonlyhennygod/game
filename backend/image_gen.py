@@ -5,6 +5,9 @@ import requests
 import os
 import json
 from openai import OpenAI
+from dotenv import load_dotenv
+# Load environment variables
+load_dotenv()
 
 XAI_API_KEY = os.getenv("XAI_API_KEY")
 client = OpenAI(base_url="https://api.x.ai/v1", api_key=XAI_API_KEY)

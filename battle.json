@@ -1,7 +1,7 @@
 {
     "Character_1": {
         "Name": "Pikachu",
-        "Character_Summary": "Pikachu is an Electric-type Pok\u00e9mon known for its agility and electric attacks. It is weak against Ground-type moves.",
+        "Character_Summary": "Pikachu is an Electric-type Pok\u00e9mon known for its speed and electric attacks. It is agile and can deliver powerful electric shocks, but it is vulnerable to Ground-type moves.",
         "Moves": {
             "Move_1": {
                 "Move_name": "Thunderbolt",
@@ -10,24 +10,24 @@
             },
             "Move_2": {
                 "Move_name": "Quick Attack",
-                "Description": "An almost invisibly fast attack.",
+                "Description": "The user lunges at the target at a speed that makes it almost invisible.",
                 "Damage": "40"
             },
             "Move_3": {
                 "Move_name": "Iron Tail",
-                "Description": "The target is slammed with a steel-hard tail.",
+                "Description": "The user attacks with a hard tail.",
                 "Damage": "100"
             },
             "Move_4": {
                 "Move_name": "Electro Ball",
-                "Description": "The faster the user is than the target, the greater the damage.",
-                "Damage": "60"
+                "Description": "The user hurls an electric orb at the target.",
+                "Damage": "80"
             }
         }
     },
     "Character_2": {
         "Name": "Charizard",
-        "Character_Summary": "Charizard is a Fire/Flying-type Pok\u00e9mon with powerful fire attacks and flight ability. It is weak against Water and Electric-type moves.",
+        "Character_Summary": "Charizard is a Fire/Flying-type Pok\u00e9mon known for its fiery breath and ability to fly. It can unleash powerful fire attacks but is weak to Water and Rock-type moves.",
         "Moves": {
             "Move_1": {
                 "Move_name": "Flamethrower",
@@ -35,14 +35,14 @@
                 "Damage": "90"
             },
             "Move_2": {
-                "Move_name": "Fly",
-                "Description": "The user soars and then strikes its target on the next turn.",
-                "Damage": "90"
-            },
-            "Move_3": {
                 "Move_name": "Dragon Claw",
                 "Description": "The user slashes the target with huge sharp claws.",
                 "Damage": "80"
+            },
+            "Move_3": {
+                "Move_name": "Air Slash",
+                "Description": "The user attacks with a blade of air.",
+                "Damage": "75"
             },
             "Move_4": {
                 "Move_name": "Fire Spin",

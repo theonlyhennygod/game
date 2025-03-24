@@ -3,6 +3,7 @@ import json
 import os
 from dotenv import load_dotenv
 import re
+from image_gen import main as image_gen_main
 
 # Load environment variables
 load_dotenv()
@@ -100,8 +101,7 @@ def query_maestro(prompt):
 				"Damage": ""
 			}
 		}
-	},
-	"Background": ""
+	}
 }""",
             },
         ],
@@ -137,13 +137,12 @@ def save_to_file(data, filename="rapper_battle.json"):
     except json.JSONDecodeError:
         print("Could not parse JSON from response. Saving raw response.")
 
-
 def main(topic="rappers in 2025"):
     """
     Main function to run the battle simulation query
     """
     try:
-        # Get the topic from user input (with a default if none provided)
+       
         # Create the query with the specified topic
         query = create_battle_query(topic)
 
@@ -160,6 +159,8 @@ def main(topic="rappers in 2025"):
         # Print confirmation
         print(f"{topic} battle data generated successfully!")
 
+        image_gen_main(filename)
+        
     except Exception as e:
         print(f"Error: {e}")
 

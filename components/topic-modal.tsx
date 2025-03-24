@@ -24,11 +24,24 @@ export default function TopicModal({
 
   if (!isOpen) return null
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (topic.trim()) {
-      onSelectTopic(topic)
-      setTopic("")
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/api/generate_image?topic=${encodeURIComponent(topic)}`);
+        const result = await response.json();
+  
+        if (response.ok) {
+          onSelectTopic(result.result);  // Pass result to parent or handle locally
+        } else {
+          onSelectTopic(`Error: ${result.error}`);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        onSelectTopic('Error fetching data.');
+      } finally {
+        setTopic("");         // Clear input field
+      }
     }
   }
 
