@@ -104,8 +104,8 @@ if __name__ == "__main__":
     character_images = generate_images_from_json(json_file)
 
     for char_name, url in character_images.items():
-        save_path = f"./images/{char_name}.png"
-        output_path = f"./images/{char_name}_no_bg.png"
+        save_path = f"./public/{char_name}.png"
+        output_path = f"./public/{char_name}_no_bg.png"
         if download_image(url, save_path) and char_name != "Background":
             # Process the downloaded image to remove background
             try:

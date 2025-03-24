@@ -87,7 +87,7 @@ export default function TopicModal({
               id="topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none"
+              className="w-full p-3 border-2 border-gray-400 rounded-md focus:border-blue-500 focus:outline-none text-black"
               rows={3}
               placeholder="Enter a topic for the battle..."
             />

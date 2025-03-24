@@ -167,14 +167,14 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
 
       {/* Game Mode and Difficulty Indicator */}
       <div className="absolute top-2 left-2 bg-white px-3 py-1 rounded-full border-2 border-black">
-        <span className="pixel-font text-sm font-bold">
+        <span className="pixel-font text-sm font-bold text-black">
           1 vs AI - {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
         </span>
       </div>
 
       {/* Topic Indicator */}
       <div className="absolute top-12 left-2 bg-white px-3 py-1 rounded-full border-2 border-black max-w-[200px] truncate">
-        <span className="pixel-font text-sm font-bold">Topic: {topic}</span>
+        <span className="pixel-font text-sm font-bold text-black">Topic: {topic}</span>
       </div>
 
       {/* Player health bar - top left */}
@@ -245,12 +245,12 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
         }}
       >
         <div className="relative">
-          <div className="w-32 h-32 bg-green-700 rounded-full absolute -z-10"></div>
-          <div className="w-40 h-40 flex items-center justify-center">
+          <div className="w-64 h-64 bg-green-700 rounded-full absolute -z-10"></div>
+          <div className="w-80 h-80 flex items-center justify-center">
             <img
               src={enemyMonster.sprite || "/placeholder.svg"}
               alt={enemyMonster.name}
-              className="w-32 h-32 object-contain pixelated"
+              className="w-64 h-64 object-contain pixelated"
             />
           </div>
         </div>
@@ -270,10 +270,14 @@ export default function BattleScene({ onGameOver, gameMode, difficulty, topic }:
           duration: playerAttacking ? 0.3 : 0.2
         }}
       >
-        <div className="w-32 h-32 bg-gray-400 rounded-md flex items-center justify-center">
-          {/* Back view of player monster */}
-          <div className="w-24 h-24 bg-blue-400 rounded-full flex items-center justify-center">
-            <span className="text-white pixel-font">{playerMonster.name.charAt(0)}</span>
+        <div className="relative">
+          <div className="w-64 h-64 bg-green-700 rounded-full absolute -z-10"></div>
+          <div className="w-80 h-80 flex items-center justify-center">
+            <img
+              src={playerMonster.sprite || "/placeholder.svg"}
+              alt={playerMonster.name}
+              className="w-64 h-64 object-contain pixelated"
+            />
           </div>
         </div>
       </motion.div>
